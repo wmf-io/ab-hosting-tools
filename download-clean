@@ -1,0 +1,19 @@
+#!/bin/bash
+#Cleanup Desk and Downloads folders
+#TARGET=(/Users/warren/Desktop/* /Users/warren/Downloads/*)
+ARCH_ROOT="/Users/warren/Archives/$(date '+%v')"
+
+
+function archive {
+[ -d "$ARCH_ROOT/$1" ] || mkdir -p "$ARCH_ROOT/$1"
+for A in $( find $1 -not -name 'jlicense') 
+do
+        mv "$A" "$ARCH_ROOT/$1"
+done
+}
+
+archive /Users/warren/Downloads
+
+exit 0
+
+#for A in $( find -mindepth 1 -maxdepth 1 ~/.vim/_vim ) ; do B=$( basename $A ) ; mv -iv ~/.vim/_vim/$B ~/.vim/ ; done
